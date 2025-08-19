@@ -1,1 +1,1 @@
-console.log("API está on!");
+console.log("A api está pronta")
