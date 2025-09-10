@@ -2,11 +2,25 @@
 
 const express = require("express"); 
 
+//importar o middleware de rotas 
+
+const router = require('./router-tarefas'); 
+
+// importa middleware de terceiros
+
+const cors = require("cors"); 
+
 // criar uma instancia da aplicação 
 
 const app = express() ; 
 
-// // primeira forma
+// middleware embutido ou integrado -> ativar um middleware app.use() -> ele usa os middlewares na ordem de precedência. 
+
+app.use(express.json());   // converte o json que recebe de requisição.  O primeiro middleware. (pra já converter tudo pra JSON)
+app.use(express.urlencoded({extended:false})) ; //?param1=valor&param2=valor2 -> pegar parâmetros que vêm na URL. -> o extended padroniza. pra sempre vir assim.
+
+// middleware de terceiros. 
+app.use(cors()); 
 
 
 // arrow-function (equivale, a mesma coisa )
@@ -16,30 +30,11 @@ app.use( (req,res, next) => {
     next(); 
 })
 
-// middleware de rotas 
-const router = express.Router(); 
 
-router.get('/', (req,res) => {
-    res.send('Chegou aqui')
-}) ; 
 
-// quando dá o post recebe o 201 -> o send é a mensagem que aparecerá. 
+app.use("/tarefas", router); 
 
-router.post('/', (req,res) => { 
-    res.status(201).send("Inserido com sucesso")
-})
-
-router.get("/:id", (req,res) => { 
-    const {id} = req.params ;  // {id:1, param2:5, param3:6 } -> desestruturação do objeto -> pegar só uma parte de tudo que o objeto oferece. 
-    if(id==1) return res.send("Achei")  
-    throw Error("Não achei")
-    })
-
-// acima se lança um erro, pra ele entrar no erro embaixo. 
-
-app.use(router); 
-
-// middleware de erro  -> encapsular os erros.
+// middleware de erro  -> encapsular os erros / os erros entram aqui 
 
 app.use((err,req,res,next) => { 
     console.log(err.stack); 

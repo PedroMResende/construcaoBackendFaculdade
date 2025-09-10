@@ -1,30 +1,22 @@
 STATUS HTTP 
 
-Código	                  Significado	                              Quando usar
-200 OK	                    Sucesso	                                  GET, PUT, PATCH bem-sucedidos
-201 Created	                Criado	                                  POST que cria algo
-204 No Content	        Sucesso sem corpo	                          DELETE bem-sucedido
-301 Moved Permanently	Redirecionamento permanente	                  URL mudou
-302 Found	            Redirecionamento temporário	                  URL temporária
-304 Not Modified	    Não modificado	                              Cache do cliente ainda válido
-400 Bad Request	         Erro do cliente	                          Dados enviados inválidos
-401 Unauthorized	     Não autenticado	                          Falta login/token
-403 Forbidden	            Proibido	                              Usuário não tem permissão
-404 Not Found	          Não encontrado	                          Recurso não existe
-409 Conflict	             Conflito	                              Dados já existentes (ex: usuário duplicado)
-422 Unprocessable Entity	Entidade inválida	                      Validação de dados falhou
-500 Internal Server Error	Erro interno	                          Erro genérico no servidor
-502 Bad Gateway	Gateway inválido	Erro entre servidores
-503 Service Unavailable	Serviço indisponível	Manutenção ou sobrecarga
-504 Gateway Timeout	Tempo esgotado	Servidor não respondeu a tempo
-
-
-
-
-
-
-
-
+Código	                           Significado	                              Quando usar
+200 OK	                             Sucesso	                              GET, PUT, PATCH bem-sucedidos
+201 Created	                         Criado	                                  POST que cria algo
+204 No Content	                 Sucesso sem corpo	                          DELETE bem-sucedido
+301 Moved Permanently	      Redirecionamento permanente	                  URL mudou
+302 Found	                  Redirecionamento temporário	                  URL temporária
+304 Not Modified	              Não modificado	                          Cache do cliente ainda válido
+400 Bad Request	                 Erro do cliente	                          Dados enviados inválidos
+401 Unauthorized	             Não autenticado	                          Falta login/token
+403 Forbidden	                    Proibido	                              Usuário não tem permissão
+404 Not Found	                 Não encontrado	                              Recurso não existe
+409 Conflict	                    Conflito	                              Dados já existentes (ex: usuário duplicado)
+422 Unprocessable Entity	     Entidade inválida	                          Validação de dados falhou
+500 Internal Server Error	     Erro interno	                              Erro genérico no servidor
+502 Bad Gateway	                Gateway inválido	                          Erro entre servidores
+503 Service Unavailable	        Serviço indisponível	                      Manutenção ou sobrecarga
+504 Gateway Timeout	            Tempo esgotado	                              Servidor não respondeu a tempo
 
 
 
@@ -54,7 +46,7 @@ independe do verbo da requisição (GET, POST, PUT, DELETE, PATCH, GET(ID), ...{
 
 
 7 - Segundo middleware
-pra pegar outras hierarquias é necessário criar o nível de rotas. /tarefas /ids /{qualquerCoisa} 
+pra pegar outras hierarquias é necessário criar o nível de rotas. /usuarios /produtos /tarefas /ids /{qualquerCoisa} 
 aqui que trata-se os verbos. 
 
 const route = express.Router() ; 
@@ -73,7 +65,7 @@ app.use('/tarefas', router) -> ele já vai atender a rota tarefas.
 8 - middleware embutido -> vem do próprio express 
 
 
-9 - middleware de terceiros -> de bibliotecas externas
+9 - middleware de terceiros -> middlewares que instalamos que vem de bibliotecas externas. 
 
 10 - middleware de erro, tem que ser o último -geralmente- 
 se der erro, passa para a middleware de erro. 
@@ -83,9 +75,13 @@ app.use((err,req,res,next) => {
     
 })
 
+11- npm install cors -> domínios que podem acessar a API. -> Para segurança. 
 
+(AULA 6)
 
+12 - express generator -> gera a estrutura padrão de uma API 
 
+npx express-generator --no-view aula06
 
 
 
