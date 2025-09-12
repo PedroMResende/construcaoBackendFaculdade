@@ -1,0 +1,171 @@
+type: collection.insomnia.rest/5.0
+name: PRATICA-4
+meta:
+  id: wrk_dc445fd76a3a48d28c9bb9385bf2e1e9
+  created: 1757026965247
+  modified: 1757636949547
+  description: ""
+collection:
+  - url: http://localhost:3000/tarefas/2
+    name: DELETE/id
+    meta:
+      id: req_ec942daeb7b9449db4e3004f0953f39b
+      created: 1757026990839
+      modified: 1757635853618
+      isPrivate: false
+      description: ""
+      sortKey: -1757026990839
+    method: DELETE
+    headers:
+      - name: User-Agent
+        value: insomnia/11.5.0
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: http://localhost:3000/tarefas/2
+    name: PUT/tarefas/id
+    meta:
+      id: req_3b39768f4ba7430c82eb06278b5a789e
+      created: 1757032737150
+      modified: 1757635407600
+      isPrivate: false
+      description: ""
+      sortKey: -1757032737150
+    method: PUT
+    body:
+      mimeType: application/json
+      text: |-
+        {
+        	"nome": "Praticar Express/teste4"
+        }
+    headers:
+      - name: Content-Type
+        value: application/json
+      - name: User-Agent
+        value: insomnia/11.5.0
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: http://localhost:3000/tarefas/2
+    name: GET/tarefas/id
+    meta:
+      id: req_4ee81d776ed64da491151fc294edc281
+      created: 1757457149437
+      modified: 1757635086158
+      isPrivate: false
+      description: ""
+      sortKey: -1757457149437
+    method: GET
+    body:
+      mimeType: application/json
+      text: ""
+    headers:
+      - name: Content-Type
+        value: application/json
+      - name: User-Agent
+        value: insomnia/11.5.0
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: http://localhost:3000/tarefas
+    name: GET/tarefas
+    meta:
+      id: req_6dd10ea8f0fd491c8a5700e1b0f6b819
+      created: 1757632215009
+      modified: 1757633620793
+      isPrivate: false
+      description: ""
+      sortKey: -1757632215009
+    method: GET
+    headers:
+      - name: User-Agent
+        value: insomnia/11.5.0
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: http://localhost:3000/tarefas
+    name: POST/tarefas
+    meta:
+      id: req_b3da7407386e4ee9837509a0ec84b06a
+      created: 1757632218646
+      modified: 1757633757923
+      isPrivate: false
+      description: ""
+      sortKey: -1757632218646
+    method: POST
+    body:
+      mimeType: application/json
+      text: |+
+        {
+        	"id": 3 , 
+        	"nome": "Passando a tarefa", 
+        	"concluida": false
+        }
+
+    headers:
+      - name: Content-Type
+        value: application/json
+      - name: User-Agent
+        value: insomnia/11.5.0
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: http://localhost:3000/tarefas/4
+    name: New Request
+    meta:
+      id: req_1e03f6ac5dbb416f894afb1d6bce263c
+      created: 1757636787493
+      modified: 1757636823094
+      isPrivate: false
+      description: ""
+      sortKey: -1757636787493
+    method: GET
+    headers:
+      - name: User-Agent
+        value: insomnia/11.5.0
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+cookieJar:
+  name: Default Jar
+  meta:
+    id: jar_2000655c39ffca48b293bac52c12aeb48c6d5047
+    created: 1757026965250
+    modified: 1757026965250
+environments:
+  name: Base Environment
+  meta:
+    id: env_2000655c39ffca48b293bac52c12aeb48c6d5047
+    created: 1757026965249
+    modified: 1757026965249
+    isPrivate: false

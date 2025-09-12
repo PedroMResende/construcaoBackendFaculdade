@@ -24,7 +24,7 @@ app.use(cors());
 
 
 // arrow-function (equivale, a mesma coisa )
-// middleware de app
+// middleware de aplicação (app)
 app.use( (req,res, next) => { 
     console.log("passei aqui")
     next(); 
