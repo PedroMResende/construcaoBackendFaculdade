@@ -22,4 +22,8 @@ adiciona o script "dev": "nodemon ./bin/www"
 
 --> chama o watchAll no test jest -watchAll
 
-6) 
+6) Criar fold test -> app.test.js 
+    Criar app.js e fazer toda a estrutura lá . (Ou na real acho que ele já vem no expressGenerator.)
+
+    Criar o CRUD lá. 
+
