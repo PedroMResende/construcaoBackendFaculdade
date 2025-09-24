@@ -4,15 +4,16 @@ const controller = require('../controllers/tarefaController');
 const router = express.Router() ; 
 
 
+
 router.get('/', controller.listarTarefa) ; 
 
 router.post('/', controller.criarTarefa) ; 
 
-router.get('/:id', controller.listarTarefaId) ; 
+router.get('/:id', controller.buscarTarefa, controller.obterTarefa) ; 
 
-router.put('/:id', controller.alterarTarefa) ; 
+router.put('/:id', controller.buscarTarefa, controller.atualizarTarefa) ; 
 
-router.delete('/:id',controller.deletarTarefa); 
+router.delete('/:id',controller.buscarTarefa, controller.removerTarefa); 
 
 
 module.exports = router ; 

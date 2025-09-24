@@ -1,51 +1,42 @@
-const tarefas = []
+const model = require('../models/tarefaModel'); 
 
 const listarTarefa = (req,res) => { 
-    res.json(tarefas); 
+    res.json(model.listar()); 
 }; 
 
 const criarTarefa = (req,res) => { 
-    const novaTarefa = {
-        ...req.body, 
-        id: tarefas.length + 1
-    }; 
-    tarefas.push(novaTarefa); 
+    const novaTarefa = model.criar(req.body); 
     res.status(201).json(novaTarefa); 
 
 }; 
 
-const listarTarefaId = (req,res) => { 
-    const {id} = req.params ;
-    const tarefaEncontrada = tarefas.find((item) =>
-        item.id === parseInt(id)
-    ); 
-    if(tarefaEncontrada)
-        return res.json(tarefaEncontrada);  
-    res.status(404).json({msg: "Tarefa não encontrada."})
-}; 
-
-const alterarTarefa = (req,res) => { 
+const buscarTarefa = (req,res,next) => {   //como queremos que confira e vá pro proximo middleware tem que usar o next. 
     const {id} = req.params; 
-    const tarefaEncontrada = tarefas.find(item => item.id == id); 
-
-    if(tarefaEncontrada) {
-        tarefaEncontrada.nome = req.body.nome; 
-        tarefaEncontrada.concluida = req.body.concluida ; 
-        return res.json(tarefaEncontrada) ; 
+    const tarefaEncontrada = model.obter(id); 
+    if(tarefaEncontrada){
+        req.tarefa=tarefaEncontrada ; 
+        return next(); 
     }
     res.status(404).json({msg: "Tarefa não encontrada."})
+}
+
+const obterTarefa = (req,res) => { 
+    res.json(req.tarefa)
 }; 
 
-const deletarTarefa = (req,res) => { 
+const atualizarTarefa = (req,res) => { 
     const {id} = req.params; 
-    const posicao = tarefas.findIndex((item) => item.id == id); 
-    if (posicao >=0) { 
-        tarefas.splice(posicao,1); 
-        return res.status(204).end(); 
-    }
-    res.status(404).json({msg:"Tarefa não encontrada."}); 
+    const tarefaEncontrada = model.atualizar({id, ...req.body}) ; 
+    return res.json(tarefaEncontrada);
+
+}; 
+
+const removerTarefa = (req,res) => { 
+    const {id} = req.params; 
+    model.remover(id); 
+    res.status(204).end()
 }; 
 
 
 module.exports = { listarTarefa, criarTarefa,
-    listarTarefaId, alterarTarefa, deletarTarefa} ; 
+    obterTarefa, atualizarTarefa, removerTarefa, buscarTarefa} ; 
