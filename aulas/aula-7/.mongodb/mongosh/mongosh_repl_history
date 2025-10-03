@@ -1,0 +1,17 @@
+db.usuarios.find({}, {_id:0, nome: 1})
+db.usuarios.find({}, {_id:0, nome:1})
+db.usuarios.find({}, {_id:0, nome: '1'}) 
+db.usuarios.find({}, {_id:0, nome: 1}) 
+db.usuarios.find({})
+db.usuarios.updateOne({nome: "Maria"}, {$set:{telefone: "123123123"}})
+db.usuarios.find({nome: "Maria"})
+db.usuarios.find({})
+db.usuarios.insertOne({ nome: "Maria", email : "maria@esb.br", telefone: "2131231" }) 
+db.usuarios.find({})
+show collections
+db.usuarios.insertOne({ nome : "Jose" , email : "jose@esb.br"}) 
+show collections
+use meubanco
+switched to db meubanco
+use local
+show dbs

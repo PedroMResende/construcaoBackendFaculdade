@@ -1,0 +1,10 @@
+services: 
+  db:
+    image:  mongodb/mongodb-community-server:7.0-ubuntu2204
+    container_name:  meumongo
+    ports:
+      - 27017:27017  #dois espaços, traço, e um espaço.
+    volumes:
+      - ./:/data/db
+    tty:  true # executar comandos shell
+    stdin_open:  true

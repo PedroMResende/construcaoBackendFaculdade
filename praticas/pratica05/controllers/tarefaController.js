@@ -33,7 +33,7 @@ const atualizar = (req,res) => {
 } ; 
 
 const remover = (req,res) => { 
-    const {id} = req.params ; //já tira o id de req.params e nomeia de id -> ranca e nomeia em uma linha de código.
+    const {id} = req.params ; //já tira o id de req.params e nomeia de id -> ranca e nomeia, em uma linha de código.
     const resultado = tarefaModel.remover(id); 
     res.status(204).end(); 
 } ; 

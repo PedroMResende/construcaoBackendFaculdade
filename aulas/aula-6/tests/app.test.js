@@ -51,7 +51,7 @@ describe('Testes da rota /tarefas' , () => {
         .send({nome: "Estudar para p1", concluida:true}); 
         expect(response.status).toBe(200); 
         expect(response.headers['content-type']).toMatch(/json/); 
-        expect(response.body.id).toBe(id); //pode ser responde.body['id']
+        expect(response.body.id).toBe(id); //pode ser response.body['id']
         expect(response.body.nome).toBe("Estudar para p1"); 
         expect(response.body.concluida).toBe(true); 
     }); 
