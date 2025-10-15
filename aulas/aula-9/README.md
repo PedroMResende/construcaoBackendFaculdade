@@ -29,17 +29,19 @@ npm install --save-dev nodemon jest supertest
 >---
 > **Relembrando**: 
 > * **Nodemon** : Fica assistindo o código e reinicia o servidor automaticamente toda vez que tem um save. Sem ele você teria que parar e rodar node app.js toda vez que mudasse algo. 
+>---
 > * **Jest** : Ferramenta de testes para JS, ele que entende os scripts test('GET / retorna...' () => {...})
+>---
 > * **Supertest**: Usado para testar requisições HTTP (suas rotas de API) 
 >   > * ✅ Simula chamadas GET, POST, PUT, DELETE sem precisar subir o servidor de verdade. 
 >   > * 👍🏼 Ele permite simular requisições HTTP reais (como GET, POST, PUT, DELETE), mas sem precisar rodar o servidor de verdade.
 >   > * 👉🏼 Ele “conversa direto” com o seu objeto app do Express.
-> * Normalmente, pra testar uma API, você teria que:
-> 1. Subir o servidor (npm run dev),
-> 2.	Abrir o Postman ou Insomnia,
-> 3.	Fazer as requisições manualmente.
-> - O Supertest automatiza tudo isso.
-> - Ele cria as requisições internamente no código, e você define o que espera como resposta (status, corpo, cabeçalhos, etc.).
+>   > * Normalmente, pra testar uma API, você teria que:
+>   >   1. Subir o servidor (npm run dev),
+>   >   2.	Abrir o Postman ou Insomnia,
+>   >   3.	Fazer as requisições manualmente.
+>   >- O Supertest **automatiza tudo isso**.
+>   >   - Ele cria as requisições internamente no código, e você define o que espera como resposta (status, corpo, cabeçalhos, etc.).
 >---
 
 
