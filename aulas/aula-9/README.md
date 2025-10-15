@@ -34,7 +34,14 @@ npm install --save-dev nodemon jest supertest
 >   > * ✅ Simula chamadas GET, POST, PUT, DELETE sem precisar subir o servidor de verdade. 
 >   > * 👍🏼 Ele permite simular requisições HTTP reais (como GET, POST, PUT, DELETE), mas sem precisar rodar o servidor de verdade.
 >   > * 👉🏼 Ele “conversa direto” com o seu objeto app do Express.
+> * Normalmente, pra testar uma API, você teria que:
+> 1. Subir o servidor (npm run dev),
+> 2.	Abrir o Postman ou Insomnia,
+> 3.	Fazer as requisições manualmente.
+> - O Supertest automatiza tudo isso.
+> - Ele cria as requisições internamente no código, e você define o que espera como resposta (status, corpo, cabeçalhos, etc.).
 >---
+
 
 ## 5) Criar o arquivo .env na raíz do projeto. 
 
