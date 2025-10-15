@@ -90,7 +90,7 @@ mongoose
 
 ```json 
 "start" : "node ./bin/www", 
-"dev" : "nodemon ./bin/www, 
+"dev" : "nodemon ./bin/www", 
 "test" : "jest --watchAll"
 ```
 
