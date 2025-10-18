@@ -223,7 +223,66 @@ describe('Testes do recurso /tarefas', () => {
     })
 })
 ```
-#### A ordem dos testes é importante. 
+#### **A ordem dos testes é importante!!** 
+
+## 16) Criar a pasta models e o arquivo tarefaModel.js
+
+#### Importar o mongoose 
+```bash
+const mongoose = require('mongoose') ; 
+```
+
+#### Criar um mongoose Schema -> Uma classe JS que está mapeada com o documento que vai ser criado no mongoDB. 
+```js
+const schema = new mongoose.Schema({
+    nome: string,
+    concluida: Boolean,
+}) ////esse schema é pra criar um modelo do que vai subir pro mongoose, porque senão ele sobe qualquer coisa. Tipo uma interface JAVA. 
+
+//exportar o modelo. 
+mmodule.exports = mongoose.Model('Tarefa', schema); 
+```
+### **‼️‼️IMPORTANTE:** É um padrão colocar o nome do Model no singular, o mongoose automaticamente pega a collection do plural de Tarefa, ou seja, tarefas. (passa pra LowerCase())  
+
+## 17) Ir no Controller e importar o Model, pra trabalhar com esse Schema e implementar todas as funções do CRUD a partir do SCHEMA. 
+
+```js
+const Tarefa = require('../models/tarefaModel'); 
+
+async function listar(req,res){              
+const tarefas = await Tarefa.find({})          // -> Adicionar essa linha e passar async. Esse Tarefa é o que foi importado. 
+return res.json(tarefas); 
+}; 
+```
+#### Adicionar uma linha no teste. 
+```js
+expect(Array.isArray(response.body)).toBe(true); //testa se a resposta vem como um array. 
+```
+
+### **LEMBRANDO QUE EM NENHUM MOMENTO FOI ESPECIFICADO O BANCO DE DADOS QUE DEVE SER UTILIZADO.**
+
+#### Vai no .env e cria a variável que se refere ao banco de dados. 
+
+```js
+MONGODB_DBNAME = agenda
+```
+
+#### Chama ela na url de conexão. No final da URL. Precisa passar o nome do banco de dados. 
+```js
+const url = `mongodb+srv://${process.env.MONGODB_USER}:${process.env.MONGODB_PASSWD}@${process.env.MONGODB_HOST}/${process.env.MONGODB_DBNAME}`; 
+```
+## 18) Volta no controlador e faz o tratamento da exceção no método listar, por enquanto. 
+```js
+async function listar(req,res){
+    try {
+        const tarefas = await Tarefa.find({})
+        return res.json(tarefas); 
+    } catch(err) {
+        res.status(500).json({msg: "Deu ruim :/" + err.message})
+    }
+}; 
+```
+
 
 
 
