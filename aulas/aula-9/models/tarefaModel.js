@@ -1,7 +1,11 @@
 const mongoose = require('mongoose') ; 
 
 const schema = new mongoose.Schema({
-    nome: String,
+    nome: {
+        type: String, 
+        required: [true, 'Nome da tarefa é obrigatório'], //trata a mensagem de quando não é passado um nome. 
+        trim: true, //remove espaços em branco na passagem do nome
+    },
     concluida: Boolean,
 }); 
 

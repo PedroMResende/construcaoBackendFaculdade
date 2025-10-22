@@ -271,7 +271,7 @@ MONGODB_DBNAME = agenda
 ```js
 const url = `mongodb+srv://${process.env.MONGODB_USER}:${process.env.MONGODB_PASSWD}@${process.env.MONGODB_HOST}/${process.env.MONGODB_DBNAME}`; 
 ```
-## 18) Volta no controlador e faz o tratamento da exceção no método listar, por enquanto. 
+## 18) Volta no controlador e faz o tratamento da exceção no método listar, e de todos os outros, e passa os métodos mongoose. 
 ```js
 async function listar(req,res){
     try {
@@ -282,6 +282,12 @@ async function listar(req,res){
     }
 }; 
 ```
+
+## 19) Ajustar os testes e fazer validações, pra tratar requisições. LER NO CÓDIGO. 
+
+## 20) Validando os IDS. 
+
+#####
 
 
 
