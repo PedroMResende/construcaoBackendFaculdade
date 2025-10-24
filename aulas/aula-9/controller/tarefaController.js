@@ -46,13 +46,20 @@ function exibir(req,res){
 }
 
 async function atualizar(req,res){
+    try{
     const {id} = req.params; 
     const tarefaAtualizada = await Tarefa.findOneAndUpdate(
         {_id:id}, 
         {...req.body}, 
-        {new:true} //isso aqui passa o parâmetro pra retornar a tarefa atualizada, se não passar, retorna a tarefa encontrada.
+        {new:true, runValidators:true} 
     ); 
-    return res.json(tarefaAtualizada); 
+    //isso aqui passa o parâmetro pra retornar a tarefa atualizada(new), se não passar, retorna a tarefa encontrada. O runValidators ele passa as validações. (Mongoose que faz isso, se atualiza não faz validação, se cria faz a validação.)
+    return res.json(tarefaAtualizada);
+} catch(err) { 
+    if(err.errors) { 
+        return res.status(422).json({msg: err.errors['nome'].message});
+    }
+} 
 }
 
 async function remover(req,res){

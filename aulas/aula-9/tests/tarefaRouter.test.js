@@ -70,6 +70,14 @@ describe('Testes do recurso /tarefas', () => {
     expect(response.body.msg).toBe("Tarefa não encontrada!") ; //tem que ser a mesma mensagem passada lá na lógica.
     }); 
 
+    test('PUT /id deve retornar 422', async() => { 
+    const response = await request 
+    .put(`${url}/${id}`)
+    .send({nome: '', concluida: true});  //tentando passar dado vazio e ele tá passando -> Update não passa na validação. Ele vai passar vazio e vai funcionar
+    expect(response.status).toBe(422); 
+    expect(response.body.msg).toBe("Nome da tarefa é obrigatório"); 
+    }); 
+
     test('DELETE /id deve retornar 204', async() => { 
         const response = await request.delete(`${url}/${id}`); 
         expect(response.status).toBe(204)

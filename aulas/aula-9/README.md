@@ -283,7 +283,7 @@ async function listar(req,res){
 }; 
 ```
 
-## 19) Ajustar os testes e fazer validações, pra tratar requisições. LER NO CÓDIGO. 
+## 19) Ajustar os testes e fazer validações, pra tratar requisições. LER NO CÓDIGO. (Erros onde o usuário não passa dados corretamente. 400 e 422)
 
 ## 20) Validando os IDS. 
 

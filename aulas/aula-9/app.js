@@ -9,7 +9,7 @@ const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 
 
-const url = `mongodb+srv://${process.env.MONGODB_USER}:${process.env.MONGODB_PASSWD}@${process.env.MONGODB_HOST}/${process.env.MONGODB_DBNAME} ` ; 
+const url = `mongodb+srv://${process.env.MONGODB_USER}:${process.env.MONGODB_PASSWD}@${process.env.MONGODB_HOST}/${process.env.MONGODB_DBNAME}` ; 
 
 mongoose
 .connect(url)

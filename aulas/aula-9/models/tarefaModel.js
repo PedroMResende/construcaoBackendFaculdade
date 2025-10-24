@@ -9,7 +9,8 @@ const schema = new mongoose.Schema({
     concluida: Boolean,
 }); 
 
-//esse schema é pra criar um modelo do que vai subir pro mongoose, porque senão ele sobe qualquer coisa. Tipo uma interface JAVA. 
+//esse schema é pra criar um modelo do que vai subir pro mongoose, porque senão ele sobe qualquer coisa. 
 
 module.exports = mongoose.model('Tarefa', schema); 
 
+//aqui ele vai criar uma collection com toLowerCase() no nome que cê passou. -> Ex.: tarefas
