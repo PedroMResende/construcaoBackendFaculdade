@@ -3,6 +3,7 @@ const app = require('../app');
 const request = supertest(app); 
 
 let token = null ; 
+let novoToken = null ; 
 
 const urlProdutos = '/produtos' ; 
 const urlLoginUsuarios = '/usuarios/login'; 
@@ -25,7 +26,7 @@ describe('TESTES NA ROTA /PRODUTOS', () => {
 
     test('POST /usuarios/login deve retornar 200' , async() => { 
         const response = await request.post(urlLoginUsuarios).send({
-            usuario: "email@exemplo.com.br", 
+            email: "email@exemplo.com.br", 
             senha: "abcd1234"
         }); 
         expect(response.status).toBe(200); 
@@ -34,18 +35,27 @@ describe('TESTES NA ROTA /PRODUTOS', () => {
         token = response.body.token; 
     }); 
 
-    test('GET /produtos passando o token', async() => { 
+    test('GET /produtos passando o token deve retornar 200', async() => { 
         const response = await request.get(urlProdutos)
         .set('Authorization', `Bearer ${token}`); 
         expect(response.status).toBe(200); 
         expect(response.headers['content-type']).toMatch(/json/); 
     }); 
 
-    test('POST /usuarios/renovar', async() => {
-        const response = await request.get(urlRenovarUsuarios)
+    test('POST /usuarios/renovar deve retornar 200', async() => {
+        const response = await request.post(urlRenovarUsuarios)
         .set('Authorization', `Bearer ${token}`); 
         expect(response.status).toBe(200);
         expect(response.headers['content-type']).toMatch(/json/);
-        
+        expect(response.body.token).toBeDefined(); 
+        novoToken = response.body.token ; 
     }); 
+
+    test('GET /produtos com o novo token deve retornar 200', async() => { 
+        const response = await request.get(urlProdutos)
+        .set('Authorization', `Bearer ${novoToken}`); 
+
+        expect(response.status).toBe(200); 
+        expect(response.headers['content-type']).toMatch(/json/); 
+    })
 })
