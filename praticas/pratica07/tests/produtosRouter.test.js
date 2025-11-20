@@ -78,7 +78,7 @@ describe('Testes do recurso /produtos', () => {
         expect(response.body.msg).toBe("Nome e preço do produto são obrigatórios!"); 
     }); 
 
-    test('PUT /produtos/o deve retornar 400(ID inválido)', async() => {
+    test('PUT /produtos/0 deve retornar 400(ID inválido)', async() => {
         const response = await request.put(`${url}/0`); 
         expect(response.status).toBe(400); 
         expect(response.headers['content-type']).toMatch(/json/); 

@@ -1,0 +1,130 @@
+openapi: 3.0.0
+info:
+  title: Minha API REST
+  version: 0.1
+servers:
+  - url: http://localhost:3000/
+tags:
+  - name: usuarios
+paths:
+  /usuarios:
+    post:
+      tags:
+        - usuarios
+      requestBody:
+        description: Um JSON com dados do usuário.
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Usuario'
+      responses:
+        201:
+          description: Usuario criado com sucesso.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Usuario'
+        422:
+          description: "Email e Senha são obrigatórios"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Mensagem'
+  /usuarios/login:
+    post:
+      tags:
+        - usuarios
+      requestBody:
+        description: Um JSON com os dados de login.
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Registro'
+      responses:
+        200:
+          description: "Login efetuado com sucesso"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Token'
+        401:
+          description: "Credenciais inválidas"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Mensagem'
+  /usuarios/renovar:
+    post:
+      tags:
+        - usuarios
+      security:
+        - JWTAuth: []
+      description: "Renova (refresh) o token JWT. Deve enviar o token atual no cabeçalho Authorization."
+      responses:
+        200:
+          description: "Token renovado com sucesso"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Mensagem'
+        401:
+          description: "Token inválido ou ausente"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Mensagem'
+  /usuarios/{id}:
+    delete:
+      tags:
+        - usuarios
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          description: ID do usuário a ser excluído
+      responses:
+        204:
+          description: "Usuário deletado com sucesso (sem conteúdo)"
+
+components:
+  schemas:
+    Usuario:
+      type: object
+      required:
+        - email
+        - senha
+      properties:
+        email:
+          type: string
+        senha:
+          type: string
+    Registro:
+      type: object
+      required:
+        - usuario
+        - senha
+      properties:
+        usuario:
+          type: string
+        senha:
+          type: string
+    Mensagem:
+      type: object
+      properties:
+        msg:
+          type: string
+    Token:
+      type: object
+      properties:
+        token:
+          type: string
+  securitySchemes:
+    JWTAuth:
+      type: apiKey
+      in: header
+      name: authorization
+      description: "Envie o token JWT no cabeçalho `authorization`, por exemplo: `Authorization: Bearer <token>`"

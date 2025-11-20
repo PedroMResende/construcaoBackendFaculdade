@@ -62,4 +62,5 @@ async function remover(req,res) {
     return res.status(204).end(); 
 }
 
-module.exports = { criar, listar, buscar, exibir, atualizar, remover}
+module.exports = { criar, listar, buscar, exibir, atualizar, remover }
+

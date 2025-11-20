@@ -32,6 +32,7 @@ JWT_SEGREDO = abcd1234
 ```js
 require('dotenv').config(); 
 ```
+#### ‼️ ‼️ Pode-se importar o dotenv em qualquer lugar, ele é de escopo global, mas tem que ser criado o arquivo na raíz, justamente por isso. 
 
 ## 6) Mudar o index.js no caminho da rota /. 
 
@@ -61,3 +62,24 @@ module.exports = router;
 ### Criar as pastas 
 1) auth.js
 
+## A pasta auth.js tem duas funções verificar o token e gerar o token. 
+
+## 8) Depois de criar a lógica dentro da pasta auth.js devemos colocar na rota que você quer o token pra entrar um middleware de validação. 
+
+```javascript
+router.get('/', auth.verificarToken, function(req, res, next) {
+  res.json("API está ON");
+});
+```
+> ‼️
+> <span style = "color:red">Ou seja, ele bate na rota chamada, chama a função que verifica o token e depois chama a lógica do ENDPOINT.</span>
+> ‼️
+
+## 9) Agora vamos ver como passa o token pra acessar com o middle
+
+1) Ir em authorization
+2) Selecionar o tipo bearer token. 
+3) Passa o token no bearer token. 
+4) Lançar uma lógica no código pra pegar só o token sem pegar a palabra bearer 
+
+## 10) Deve-se criar uma lógica de renovação de TOKEN, pra quando o token ficar inválido não ter que passar por todo o processo de login.

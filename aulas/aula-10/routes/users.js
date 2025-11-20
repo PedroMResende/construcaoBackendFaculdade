@@ -8,6 +8,8 @@ router.post("/login", (req,res) => {
 
   if(username === "jose@iesb.br" && password === "abcd1234"){
     const payload = {
+      iss: "Minha API", 
+      aud: "Você",
       email: username, 
       nome: "Jose",
     } //informação que vai transitar com o token, infos que serão publicas. Nunca passar informações confidencias
@@ -18,5 +20,8 @@ router.post("/login", (req,res) => {
     }
   }; 
   return res.status(401).json({msg: "Credenciais invalidas"})
-})
+}); 
+
+router.post('/renovar', auth.verificarToken, auth.renovarToken); 
+
 module.exports = router;

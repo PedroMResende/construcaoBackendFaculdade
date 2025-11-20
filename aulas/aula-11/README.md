@@ -30,3 +30,34 @@ npm install --save-dev nodemon
     "dev": "nodemon -e yaml,js ./bin/www"  // -> flag utilizada para o nodemon escutar e atualizar automaticamente todos os arquivos .yaml e .js. 
 ```
 
+## Parte 4 
+#### Mão na massa lá no swagger YAML. 
+
+## Parte 5 
+### CORS 
+
+- instala o cors
+```bash
+npm install cors 
+```
+- vai na app (importa o cors); 
+```js
+const cors = require('cors'); 
+```
+- passa o parâmetro no middleware antes das rotas necessariamente. 
+```js
+app.use(cors());
+```
+
+>
+> Da forma que está acima qualquer host pode acessar a API. 
+>
+
+```js
+app.use(cors({
+    //aqui vai a parte que você limita quem pode consumir. 
+}))
+```
+
+
+
