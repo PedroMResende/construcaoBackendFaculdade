@@ -1,6 +1,5 @@
 const jwt = require('jsonwebtoken'); 
 const bcrypt = require('bcrypt'); 
-require('dotenv').config();
 
 function verificarToken(req,res,next) { 
     const {authorization} = req.headers; 
@@ -13,7 +12,6 @@ function verificarToken(req,res,next) {
     try {
         const [ ,token] = authorization.split(" ");
         req.usuario = jwt.verify(token, process.env.JWT_SECRET);
-        console.log('PASSEI AQUI',req.usuario); 
         next(); 
     } catch(err) { 
         return res.status(401).json({msg: "Token inválido"})
@@ -24,6 +22,7 @@ function gerarToken(payload) {
     const expiresIn = process.env.JWT_EXPIRES ; 
     
     try {
+        console.log("TESTANDO O SEGREDO 2", process.env.JWT_SECRET)
         return jwt.sign(
             payload, 
             process.env.JWT_SECRET, 

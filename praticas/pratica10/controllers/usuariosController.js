@@ -35,7 +35,7 @@ async function entrar(req,res) {
 };
 
 async function renovar(req,res) {
-    const {email} = req.usuario
+    const {email} = req.usuario;
     const token = gerarToken({email}); 
     console.log("TOKEN NOVOOOOOOO", token)
     console.log("ENTREI")
